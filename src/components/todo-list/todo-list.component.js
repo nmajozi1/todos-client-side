@@ -9,7 +9,7 @@ import './todo-list.style.scss';
 import useTodoStore from '../../store';
 
 const ToDoList = () => {
-  const [todoList, patchTodo, deleteToDo, create] = useTodoStore((state) => [state.todos, state.patchTodo, state.deleteToDo, state.create]);
+  const [todoList, patchTodo, deleteToDo] = useTodoStore((state) => [state.todos, state.patchTodo, state.deleteToDo]);
 
   const handleChange = useCallback(
     (id, status) => {
