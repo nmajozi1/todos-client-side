@@ -1,7 +1,5 @@
 import React from 'react';
 import IconButton from '@mui/material/IconButton';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -22,17 +20,6 @@ const ToDoList = () => {
     deleteToDo(id);
   }
 
-  const handleCreateTodo = (e) => {
-    if (e.key === 'Enter') {
-      const newTodo = {
-        todo: e.target.value,
-        completion: false
-      }
-  
-      create(newTodo);
-    }
-  }
-
   const checkBoxList = todoList.map(todo => {
     return (
       <div className="check-button-container" key={todo.id}>
@@ -49,13 +36,9 @@ const ToDoList = () => {
 
   return (
     <>
-        <h1>Todo List</h1>
-            <FormControl fullWidth>
-                <TextField id="standard-basic" label="Add a new todo" variant="standard" onKeyDown={handleCreateTodo}/>
-            </FormControl>
-            <FormGroup className="form-container">
-              {checkBoxList}
-            </FormGroup>
+      <FormGroup className="form-container">
+        {checkBoxList}
+      </FormGroup>
     </>
   )
 }

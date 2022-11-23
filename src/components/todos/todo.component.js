@@ -7,6 +7,7 @@ import correct from '../../assets/group.svg';
 
 import './todo.style.scss';
 import ToDoList from '../todo-list/todo-list.component';
+import CreateToDo from '../create-todo/create-todo.component';
 const Todos = () => {
   const fetchTodos = useTodoStore((state) => state.fetchTodos);
 
@@ -21,6 +22,8 @@ const Todos = () => {
             <div>
               <img src={correct} alt="correct" />
             </div>
+            <h1>Todo List</h1>
+            <CreateToDo />
             <ToDoList />
           </CardContent>
           <CardActions>
