@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import IconButton from '@mui/material/IconButton';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -11,14 +11,18 @@ import useTodoStore from '../../store';
 const ToDoList = () => {
   const [todoList, patchTodo, deleteToDo, create] = useTodoStore((state) => [state.todos, state.patchTodo, state.deleteToDo, state.create]);
 
-  const handleChange = (id, status) => {
-    const completeStatus = { completion: status === 0 ? true : false }
-    patchTodo(id, completeStatus);
-  }
+  const handleChange = useCallback(
+    (id, status) => {
+      const completeStatus = { completion: status === 0 ? true : false }
+      patchTodo(id, completeStatus);
+    }, [patchTodo],
+  );
 
-  const handleDelete = (id) => {
-    deleteToDo(id);
-  }
+  const handleDelete = useCallback(
+    (id) => {
+      deleteToDo(id);
+    }, [deleteToDo]
+  )
 
   const checkBoxList = todoList.map(todo => {
     return (
