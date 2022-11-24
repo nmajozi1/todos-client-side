@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import useTodoStore from '../../store';
 
 const CreateToDo = () => {
-const create = useTodoStore((state) => state.create)
+const create = useTodoStore((state) => state.create);
+const [newToDoText, setNewTodo] = useState('');
 
   const handleCreateTodo = useCallback(
     (e) => {
@@ -15,6 +16,7 @@ const create = useTodoStore((state) => state.create)
             }
         
             create(newTodo);
+            setNewTodo('');
         }
     },
     [create],
@@ -22,7 +24,7 @@ const create = useTodoStore((state) => state.create)
 
   return (
     <FormControl fullWidth>
-        <TextField id="standard-basic" label="Add a new todo" variant="standard" onKeyDown={handleCreateTodo}/>
+        <TextField label="Add a new todo" variant="standard" value={newToDoText} onKeyDown={handleCreateTodo} onChange={(e)=>setNewTodo(e.target.value)}/>
     </FormControl>
   )
 }
