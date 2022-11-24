@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import Button from '@mui/material/Button';
 import useTodoStore from '../../store';
+import './footer.style.scss';
 
 const Footer = () => {
   const [filterTodos] = useTodoStore((state) => [state.filterTodos]);
