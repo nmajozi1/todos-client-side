@@ -3,6 +3,7 @@ import { fetchTodoList, patchToDo, deleteTodo, createTodo } from './services/tod
 
 const useTodoStore = create((set) => ({
   todos: [],
+  filter: 'all',
   fetchTodos: async () => {
     const response = await fetchTodoList();
     set({ todos: response.data });
@@ -18,6 +19,9 @@ const useTodoStore = create((set) => ({
   create: async (todoData) => {
     const response = await createTodo(todoData);
     set({ todos: response.data });
+  },
+  filterTodos: async (filterVal) => {
+    set({ filter: filterVal })
   }
 }));
 

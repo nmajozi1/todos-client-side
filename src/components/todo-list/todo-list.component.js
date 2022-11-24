@@ -9,7 +9,7 @@ import './todo-list.style.scss';
 import useTodoStore from '../../store';
 
 const ToDoList = () => {
-  const [todoList, patchTodo, deleteToDo] = useTodoStore((state) => [state.todos, state.patchTodo, state.deleteToDo]);
+  const [todoList, patchTodo, deleteToDo, filter] = useTodoStore((state) => [state.todos, state.patchTodo, state.deleteToDo, state.filter]);
 
   const handleChange = useCallback(
     (id, status) => {
@@ -22,9 +22,27 @@ const ToDoList = () => {
     (id) => {
       deleteToDo(id);
     }, [deleteToDo]
-  )
+  );
 
-  const checkBoxList = todoList.map(todo => {
+  const checkBoxList = todoList.filter((todo_) => {
+    if (filter === 'complete') {
+      if (todo_.completion === 0) {
+        return false;
+      }
+
+      return true;
+    }
+
+    if (filter === 'incomplete') {
+      if (todo_.completion === 1) {
+        return false;
+      }
+
+      return true;
+    }
+
+    return true;
+  }).map(todo => {
     return (
       <div className="check-button-container" key={todo.id}>
         <FormControlLabel control={<Checkbox 

@@ -8,6 +8,7 @@ import correct from '../../assets/group.svg';
 import './todo.style.scss';
 import ToDoList from '../todo-list/todo-list.component';
 import CreateToDo from '../create-todo/create-todo.component';
+import Footer from '../footer/footer.component';
 const Todos = () => {
   const fetchTodos = useTodoStore((state) => state.fetchTodos);
 
@@ -27,12 +28,7 @@ const Todos = () => {
             <ToDoList />
           </CardContent>
           <CardActions>
-            <label className="footer-label">Show: </label>
-            <ul>
-              <li><a>All</a></li>
-              <li><a>Completed</a></li>
-              <li><a>Incompleted</a></li>
-            </ul>
+            <Footer />
           </CardActions>
         </Card>
     </div>
