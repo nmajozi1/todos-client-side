@@ -26,31 +26,25 @@ const ToDoList = () => {
 
   const checkBoxList = todoList.filter((todo_) => {
     if (filter === 'complete') {
-      if (todo_.completion === 0) {
-        return false;
-      }
-
-      return true;
+      return todo_.completion === 0 ? false : true;
     }
 
     if (filter === 'incomplete') {
-      if (todo_.completion === 1) {
-        return false;
-      }
-
-      return true;
+      return todo_.completion === 1 ? false : true;
     }
 
     return true;
   }).map(todo => {
     return (
       <div className="check-button-container" key={todo.id}>
-        <FormControlLabel control={<Checkbox 
-          checked={todo.completion === 0 ? false : true}
-          onChange={() => handleChange(todo.id, todo.completion)}
-        />} label={ todo.todo } />
+        <div className='check-label'>
+          <FormControlLabel control={<Checkbox 
+            checked={todo.completion === 0 ? false : true}
+            onChange={() => handleChange(todo.id, todo.completion)}
+          />} label={ todo.todo } />
+        </div>
         <IconButton component="label" onClick={() => handleDelete(todo.id)}>
-          <img src={cross} alt="cross" />
+            <img src={cross} alt="cross" />
         </IconButton>
       </div>
     )
